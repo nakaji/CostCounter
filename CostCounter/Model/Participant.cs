@@ -7,16 +7,22 @@ namespace CostCounter.Model
         private bool _isRunning;
         private DateTime _lastNotifiedTime;
 
+        #region Property
         public string Name { get; private set; }
-        public int Cost { get; private set; }
+        public int CostPerHour { get; private set; }
         public DateTime StartTime { get; private set; }
-        public DateTime NotifiedTime { get; private set; }
         public TimeSpan Elaps { get; private set; }
 
-        public Participant(string name, int cost)
+        public int Cost
+        {
+            get { return (int)(CostPerHour * Elaps.TotalHours); }
+        }
+        #endregion
+
+        public Participant(string name, int costPerHour)
         {
             Name = name;
-            Cost = cost;
+            CostPerHour = costPerHour;
         }
 
         public void Start(DateTime start)

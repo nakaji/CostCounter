@@ -17,7 +17,7 @@ namespace CostCounter.Test
         {
             _participant = new Participant("name", 5000);
             Assert.That(_participant.Name, Is.EqualTo("name"));
-            Assert.That(_participant.Cost, Is.EqualTo(5000));
+            Assert.That(_participant.CostPerHour, Is.EqualTo(5000));
         }
 
         [Test]
@@ -63,6 +63,7 @@ namespace CostCounter.Test
 
             _participant.Start(DateTime.Parse("2011/2/1 02:00:00"));
             _participant.Notify(DateTime.Parse("2011/2/1 02:30:00"));
+            Assert.That(_participant.StartTime, Is.EqualTo(DateTime.Parse("2011/2/1 02:00:00")));
             Assert.That(_participant.Elaps, Is.EqualTo(new TimeSpan(1, 40, 0)));
         }
 
@@ -84,5 +85,14 @@ namespace CostCounter.Test
             Assert.That(_participant.Elaps, Is.EqualTo(new TimeSpan(2, 10, 0)));
         }
 
+        [Test]
+        [TestCase("2011/2/1 01:00:00", 5000)]
+        [TestCase("2011/2/1 01:30:00", 7500)]
+        public void コスト計算(string notifyedTime, int totalCost)
+        {
+            _participant.Start(DateTime.Parse("2011/2/1 00:00:00"));
+            _participant.Notify(DateTime.Parse(notifyedTime));
+            Assert.That(_participant.Cost, Is.EqualTo(totalCost));
+        }
     }
 }
