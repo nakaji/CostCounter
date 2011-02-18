@@ -26,6 +26,11 @@ namespace CostCounter
             private set { _participants = value; }
         }
 
+        public long TotalCost
+        {
+            get { return _participants.Sum(x => x.Cost); }
+        }
+
         public void AddMenber(Participant participant)
         {
             _participants.Add(participant);

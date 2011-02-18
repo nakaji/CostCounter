@@ -64,6 +64,7 @@ namespace CostCounter.Test
             _keeper.Notify();
 
             Assert.That(p1.CostPerHour, Is.EqualTo(1000));
+            Assert.That(_keeper.TotalCost, Is.EqualTo(1000));
         }
     }
 }
