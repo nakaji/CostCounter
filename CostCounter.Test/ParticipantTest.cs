@@ -63,7 +63,7 @@ namespace CostCounter.Test
 
             _participant.Start(DateTime.Parse("2011/2/1 02:00:00"));
             _participant.Notify(DateTime.Parse("2011/2/1 02:30:00"));
-            Assert.That(_participant.StartTime, Is.EqualTo(DateTime.Parse("2011/2/1 02:00:00")));
+            Assert.That(_participant.StartTime, Is.EqualTo(DateTime.Parse("2011/2/1 00:00:00")));
             Assert.That(_participant.Elaps, Is.EqualTo(new TimeSpan(1, 40, 0)));
         }
 
@@ -83,6 +83,14 @@ namespace CostCounter.Test
             _participant.Start(DateTime.Parse("2011/2/1 01:10:00"));    //無視
             _participant.Notify(DateTime.Parse("2011/2/1 02:10:00"));
             Assert.That(_participant.Elaps, Is.EqualTo(new TimeSpan(2, 10, 0)));
+        }
+
+        [Test]
+        public void 開始を忘れても通知があれば開始する()
+        {
+            _participant.Notify(DateTime.Parse("2011/2/1 00:00:00"));
+            _participant.Notify(DateTime.Parse("2011/2/1 00:30:00"));
+            Assert.That(_participant.Elaps, Is.EqualTo(new TimeSpan(0, 30, 0)));
         }
 
         [Test]

@@ -29,7 +29,10 @@ namespace CostCounter.Model
         {
             if (!_isRunning)
             {
-                StartTime = start;
+                if (StartTime == DateTime.MinValue)
+                {
+                    StartTime = start;
+                }
                 _lastNotifiedTime = start;
                 _isRunning = true;
             }
@@ -41,6 +44,10 @@ namespace CostCounter.Model
             {
                 Elaps += dateTime - _lastNotifiedTime;
                 _lastNotifiedTime = dateTime;
+            }
+            else
+            {
+                Start(dateTime);
             }
         }
 
