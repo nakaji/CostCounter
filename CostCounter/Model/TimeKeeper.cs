@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using CostCounter.Model;
 using System.Threading;
 
-namespace CostCounter
+namespace CostCounter.Model
 {
     public class TimeKeeper
     {
