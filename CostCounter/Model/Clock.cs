@@ -5,8 +5,11 @@ using System.Text;
 
 namespace CostCounter.Model
 {
-    public interface IClock
+    public class Clock
     {
-        DateTime Now { get; }
+        public virtual DateTime Now
+        {
+            get { return DateTime.Now; }
+        }
     }
 }

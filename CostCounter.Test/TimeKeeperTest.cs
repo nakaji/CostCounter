@@ -7,17 +7,22 @@ using CostCounter.Model;
 
 namespace CostCounter.Test
 {
-    class FakeClock : IClock
+    class FakeClock : Clock
     {
         private DateTime _nowTime;
 
-        #region IClock
-        public DateTime Now
+        #region Clock
+        public override DateTime Now
         {
             get { return _nowTime; }
-            set { _nowTime = value; }
         }
         #endregion
+
+        public void SetNow(DateTime value)
+        {
+            _nowTime = value;
+        }
+
     }
 
     [TestFixture]
@@ -46,9 +51,9 @@ namespace CostCounter.Test
             var p1 = new Participant("A", 1000);
             _keeper.AddMenber(p1);
 
-            _clock.Now = DateTime.Parse("2011/1/1 00:00:00");
+            _clock.SetNow(DateTime.Parse("2011/1/1 00:00:00"));
             _keeper.Start();
-            
+
             Assert.That(p1.StartTime, Is.EqualTo(_clock.Now));
         }
 
@@ -58,9 +63,9 @@ namespace CostCounter.Test
             var p1 = new Participant("A", 1000);
             _keeper.AddMenber(p1);
 
-            _clock.Now = DateTime.Parse("2011/1/1 00:00:00");
+            _clock.SetNow(DateTime.Parse("2011/1/1 00:00:00"));
             _keeper.Start();
-            _clock.Now = DateTime.Parse("2011/1/1 01:00:00");
+            _clock.SetNow(DateTime.Parse("2011/1/1 01:00:00"));
             _keeper.Notify();
 
             Assert.That(p1.CostPerHour, Is.EqualTo(1000));
