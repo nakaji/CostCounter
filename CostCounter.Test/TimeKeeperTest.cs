@@ -71,5 +71,22 @@ namespace CostCounter.Test
             Assert.That(p1.CostPerHour, Is.EqualTo(1000));
             Assert.That(_keeper.TotalCost, Is.EqualTo(1000));
         }
+
+        [Test]
+        public void 停止()
+        {
+            _keeper.AddMenber(new Participant("A", 1000));
+            _keeper.AddMenber(new Participant("B", 2000));
+
+            _clock.SetNow(DateTime.Parse("2011/1/1 00:00:00"));
+            _keeper.Start();
+            _clock.SetNow(DateTime.Parse("2011/1/1 01:00:00"));
+            _keeper.Stop();
+            _clock.SetNow(DateTime.Parse("2011/1/1 01:30:00"));
+            _keeper.Notify();
+
+            Assert.That(_keeper.TotalCost, Is.EqualTo((1000 + 2000) * 1));
+
+        }
     }
 }

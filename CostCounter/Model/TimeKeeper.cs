@@ -42,5 +42,10 @@ namespace CostCounter.Model
         {
             _participants.ForEach(x => x.Notify(_clock.Now));
         }
+
+        public void Stop()
+        {
+            _participants.ForEach(x => x.Stop(_clock.Now));
+        }
     }
 }
