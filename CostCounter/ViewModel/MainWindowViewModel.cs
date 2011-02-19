@@ -21,12 +21,12 @@ namespace CostCounter.ViewModel
         #endregion
 
         private TimeKeeper _keeper;
-        private Timer _timer; 
+        private Timer _timer;
 
         public MainWindowViewModel()
         {
             _keeper = new TimeKeeper(new Clock(), 60);
-            _timer = new Timer(_keeper.Notify, null, -1, 60 * 1000);
+            _timer = new Timer(x => _keeper.Notify(), null, -1, 60 * 1000);
         }
 
         #region Property

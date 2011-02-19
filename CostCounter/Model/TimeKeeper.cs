@@ -38,7 +38,7 @@ namespace CostCounter.Model
             IsRunning = true;
         }
         
-        public void Notify(object nothing=null)
+        public void Notify()
         {
             _participants.ForEach(x => x.Notify(_clock.Now));
         }
