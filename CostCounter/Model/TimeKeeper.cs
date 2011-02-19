@@ -9,7 +9,7 @@ namespace CostCounter.Model
         private List<Participant> _participants;
         private Clock _clock;
 
-        public TimeKeeper(Clock clock, int interval = 60)
+        public TimeKeeper(Clock clock)
         {
             _participants = new List<Participant>();
             _clock = clock;

@@ -25,7 +25,7 @@ namespace CostCounter.ViewModel
 
         public MainWindowViewModel()
         {
-            _keeper = new TimeKeeper(new Clock(), 60);
+            _keeper = new TimeKeeper(new Clock());
             _timer = new Timer(x =>
                                    {
                                        _keeper.Notify();
