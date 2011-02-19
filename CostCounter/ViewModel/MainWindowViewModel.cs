@@ -21,10 +21,16 @@ namespace CostCounter.ViewModel
         private TimeKeeper _keeper = new TimeKeeper(new Clock(), 60);
 
         private ICommand _startCommand;
-        //public ICommand StartCommand
-        //{
-        //    get {return _startCommand ?? (_startCommand=new Command(()=>_keeper.Start(), ()=>_keeper.IsRunning)) }
-        //}
+        public ICommand StartCommand
+        {
+            get { return _startCommand ?? (_startCommand = new Command(() => _keeper.Start(), () => !_keeper.IsRunning)); }
+        }
+
+        private ICommand _stopCommand;
+        public ICommand StopCommand
+        {
+            get { return _stopCommand ?? (_stopCommand = new Command(() => _keeper.Stop(), () => _keeper.IsRunning)); }
+        }
     }
 
     public class Command : ICommand

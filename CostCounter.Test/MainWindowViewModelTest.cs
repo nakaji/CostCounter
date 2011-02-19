@@ -11,9 +11,34 @@ namespace CostCounter.Test
     public class MainWindowViewModelTest
     {
         [Test]
-        public void 開始してないと停止コマンドは使えない()
+        public void 最初は開始可能で停止不可()
         {
             var model = new MainWindowViewModel();
+            Assert.That(model.StartCommand.CanExecute(null), Is.True);
+            Assert.That(model.StopCommand.CanExecute(null), Is.False);
         }
+
+        [Test]
+        public void 開始すると開始不可で停止可能()
+        {
+            var model = new MainWindowViewModel();
+
+            model.StartCommand.Execute(null);
+            Assert.That(model.StartCommand.CanExecute(null), Is.False);
+            Assert.That(model.StopCommand.CanExecute(null), Is.True);
+        }
+
+        [Test]
+        public void 停止すると開始可能で停止不可()
+        {
+            var model = new MainWindowViewModel();
+
+            model.StartCommand.Execute(null);
+            model.StopCommand.Execute(null);
+
+            Assert.That(model.StartCommand.CanExecute(null), Is.True);
+            Assert.That(model.StopCommand.CanExecute(null), Is.False);
+        }
+
     }
 }
