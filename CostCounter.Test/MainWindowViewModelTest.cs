@@ -40,5 +40,24 @@ namespace CostCounter.Test
             Assert.That(model.StopCommand.CanExecute(null), Is.False);
         }
 
+        [Test]
+        public void 参加者追加()
+        {
+            var model = new MainWindowViewModel();
+
+            string property = null;
+            model.PropertyChanged += (s, e) => property = e.PropertyName;
+
+            model.Name = "Test";
+            Assert.That(property, Is.EqualTo("Name"));
+
+            model.CostPerHour = 1000;
+            Assert.That(property, Is.EqualTo("CostPerHour"));
+
+            model.AddParticipantCommand.Execute(null);
+            Assert.That(model.Participants.Count, Is.EqualTo(1));
+            Assert.That(property, Is.EqualTo("Participants"));
+        }
+
     }
 }
