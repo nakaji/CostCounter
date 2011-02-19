@@ -15,6 +15,7 @@ namespace CostCounter.Model
             _participants = new List<Participant>();
             _clock = clock;
             _timer = new Timer(Notify, null, -1, interval*1000);
+            IsRunning = false;
         }
 
         public List<Participant> Participants
@@ -36,6 +37,7 @@ namespace CostCounter.Model
         public void Start()
         {
             _participants.ForEach(x => x.Start(_clock.Now));
+            IsRunning = true;
         }
         
         public void Notify(object nothing=null)
@@ -46,6 +48,9 @@ namespace CostCounter.Model
         public void Stop()
         {
             _participants.ForEach(x => x.Stop(_clock.Now));
+            IsRunning = false;
         }
+
+        public bool IsRunning { get; private set; }
     }
 }

@@ -36,6 +36,7 @@ namespace CostCounter.Test
         {
             _clock = new FakeClock();
             _keeper = new TimeKeeper(_clock);
+            Assert.That(_keeper.IsRunning, Is.False);
         }
 
         [Test]
@@ -55,6 +56,7 @@ namespace CostCounter.Test
             _keeper.Start();
 
             Assert.That(p1.StartTime, Is.EqualTo(_clock.Now));
+            Assert.That(_keeper.IsRunning, Is.True);
         }
 
         [Test]
@@ -86,7 +88,7 @@ namespace CostCounter.Test
             _keeper.Notify();
 
             Assert.That(_keeper.TotalCost, Is.EqualTo((1000 + 2000) * 1));
-
+            Assert.That(_keeper.IsRunning, Is.False);
         }
     }
 }
