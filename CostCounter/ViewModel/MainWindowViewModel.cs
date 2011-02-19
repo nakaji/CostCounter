@@ -49,14 +49,14 @@ namespace CostCounter.ViewModel
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute();
-        }
-
         public void Execute(object parameter)
         {
             _execute();
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute();
         }
 
         public event EventHandler CanExecuteChanged
