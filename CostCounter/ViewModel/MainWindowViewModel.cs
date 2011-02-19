@@ -20,13 +20,18 @@ namespace CostCounter.ViewModel
 
         private TimeKeeper _keeper = new TimeKeeper(new Clock(), 60);
 
-        private ICommand _startCommand;
+        public string TotalCost
+        {
+            get { return string.Format("{0}", _keeper.TotalCost); }
+        }
+
+        private Command _startCommand;
         public ICommand StartCommand
         {
             get { return _startCommand ?? (_startCommand = new Command(() => _keeper.Start(), () => !_keeper.IsRunning)); }
         }
 
-        private ICommand _stopCommand;
+        private Command _stopCommand;
         public ICommand StopCommand
         {
             get { return _stopCommand ?? (_stopCommand = new Command(() => _keeper.Stop(), () => _keeper.IsRunning)); }
@@ -49,11 +54,15 @@ namespace CostCounter.ViewModel
             return _canExecute();
         }
 
-        public event System.EventHandler CanExecuteChanged;
-
         public void Execute(object parameter)
         {
             _execute();
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }

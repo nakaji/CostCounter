@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CostCounter.ViewModel;
 
 namespace CostCounter
 {
@@ -22,6 +23,8 @@ namespace CostCounter
         public MainWindow()
         {
             InitializeComponent();
+            var model = new MainWindowViewModel();
+            DataContext = model;
         }
     }
 }
