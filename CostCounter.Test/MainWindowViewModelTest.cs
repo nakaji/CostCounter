@@ -59,5 +59,19 @@ namespace CostCounter.Test
             Assert.That(property, Is.EqualTo("Participants"));
         }
 
+        [Test]
+        public void インターバルをセット()
+        {
+            var model = new MainWindowViewModel();
+
+            string property = null;
+            model.PropertyChanged += (s, e) => property = e.PropertyName;
+
+            model.Interval = 60;
+            Assert.That(property, Is.EqualTo("Interval"));
+            Assert.That(model.Interval, Is.EqualTo(60));
+
+        }
+
     }
 }
