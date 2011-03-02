@@ -34,18 +34,27 @@ namespace CostCounter.Model
 
         public void Start()
         {
-            _participants.ForEach(x => x.Start(_clock.Now));
+            foreach (var x in _participants)
+            {
+                x.Start(_clock.Now);
+            }
             IsRunning = true;
         }
         
         public void Notify()
         {
-            _participants.ForEach(x => x.Notify(_clock.Now));
+            foreach (var x in _participants)
+            {
+                x.Notify(_clock.Now);
+            }
         }
 
         public void Stop()
         {
-            _participants.ForEach(x => x.Stop(_clock.Now));
+            foreach (var x in _participants)
+            {
+                x.Stop(_clock.Now);
+            }
             IsRunning = false;
         }
 
