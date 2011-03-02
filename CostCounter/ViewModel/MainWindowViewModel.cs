@@ -72,7 +72,6 @@ namespace CostCounter.ViewModel
             get { return _keeper.Participants; }
         }
 
-
         public string TotalCost
         {
             get { return string.Format("{0}", _keeper.TotalCost); }
@@ -82,21 +81,27 @@ namespace CostCounter.ViewModel
         private Command _startCommand;
         public ICommand StartCommand
         {
-            get { return _startCommand ?? (_startCommand = new Command(() =>
-                                                                           {
-                                                                               _keeper.Start();
-                                                                               _timer.Change(0, _interval * 1000);
-                                                                           }, () => !_keeper.IsRunning)); }
+            get
+            {
+                return _startCommand ?? (_startCommand = new Command(() =>
+                                                                         {
+                                                                             _keeper.Start();
+                                                                             _timer.Change(0, _interval * 1000);
+                                                                         }, () => !_keeper.IsRunning));
+            }
         }
 
         private Command _stopCommand;
         public ICommand StopCommand
         {
-            get { return _stopCommand ?? (_stopCommand = new Command(() =>
-                                                                         {
-                                                                             _keeper.Stop();
-                                                                             _timer.Change(-1, _interval * 1000);
-                                                                         }, () => _keeper.IsRunning)); }
+            get
+            {
+                return _stopCommand ?? (_stopCommand = new Command(() =>
+                                                                       {
+                                                                           _keeper.Stop();
+                                                                           _timer.Change(-1, _interval * 1000);
+                                                                       }, () => _keeper.IsRunning));
+            }
         }
 
         private Command _addParticipantpCommand;
