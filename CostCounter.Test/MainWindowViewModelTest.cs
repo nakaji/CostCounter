@@ -60,6 +60,19 @@ namespace CostCounter.Test
         }
 
         [Test]
+        public void 参加者追加したら名前はクリアし単金はクリアしない()
+        {
+            var model = new MainWindowViewModel();
+
+            model.Name = "Test";
+            model.CostPerHour = 1000;
+            model.AddParticipantCommand.Execute(null);
+
+            Assert.That(model.Name, Is.EqualTo(""));
+            Assert.That(model.CostPerHour, Is.EqualTo(1000));
+        }
+
+        [Test]
         public void インターバルをセット()
         {
             var model = new MainWindowViewModel();

@@ -103,6 +103,7 @@ namespace CostCounter.ViewModel
                     () =>
                     {
                         _keeper.AddMenber(new Participant(_name, _costPerHour));
+                        Name = "";
                         OnPropertyChanged("Participants");
                     },
                     () => true)
