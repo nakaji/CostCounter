@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\TimeKeeper.cs" />
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
