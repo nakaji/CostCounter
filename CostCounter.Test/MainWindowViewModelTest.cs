@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CostCounter.ViewModel;
+﻿using CostCounter.ViewModel;
 using NUnit.Framework;
 
 namespace CostCounter.Test
@@ -62,10 +58,8 @@ namespace CostCounter.Test
         [Test]
         public void 参加者追加したら名前はクリアし単金はクリアしない()
         {
-            var model = new MainWindowViewModel();
+            var model = new MainWindowViewModel { Name = "Test", CostPerHour = 1000 };
 
-            model.Name = "Test";
-            model.CostPerHour = 1000;
             model.AddParticipantCommand.Execute(null);
 
             Assert.That(model.Name, Is.EqualTo(""));
@@ -83,8 +77,6 @@ namespace CostCounter.Test
             model.Interval = 60;
             Assert.That(property, Is.EqualTo("Interval"));
             Assert.That(model.Interval, Is.EqualTo(60));
-
         }
-
     }
 }

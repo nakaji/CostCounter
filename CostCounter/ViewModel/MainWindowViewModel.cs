@@ -1,17 +1,14 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading;
 using System.Windows.Input;
 using CostCounter.Model;
-using System;
 
 namespace CostCounter.ViewModel
 {
     public class MainWindowViewModel : ModelBase
     {
-        private TimeKeeper _keeper;
-        private Timer _timer;
+        private readonly TimeKeeper _keeper;
+        private readonly Timer _timer;
 
         public MainWindowViewModel()
         {

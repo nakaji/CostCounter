@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 
 namespace CostCounter.Model
 {
     public class TimeKeeper 
     {
-        private ObservableCollection<Participant> _participants;
-        private Clock _clock;
+        private readonly ObservableCollection<Participant> _participants;
+        private readonly Clock _clock;
 
         public TimeKeeper(Clock clock)
         {
@@ -21,7 +18,6 @@ namespace CostCounter.Model
         public ObservableCollection<Participant> Participants
         {
             get { return _participants; }
-            private set { _participants = value; }
         }
 
         public long TotalCost
