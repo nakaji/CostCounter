@@ -1,8 +1,9 @@
 ﻿using System;
+using CostCounter.ViewModel;
 
 namespace CostCounter.Model
 {
-    public class Participant
+    public class Participant : ModelBase
     {
         private bool _isRunning;
         private DateTime _lastNotifiedTime;
@@ -13,9 +14,18 @@ namespace CostCounter.Model
         public DateTime StartTime { get; private set; }
         public TimeSpan Elaps { get; private set; }
 
+        private int _cost;
         public int Cost
         {
-            get { return (int)(CostPerHour * Elaps.TotalHours); }
+            get
+            {
+                return _cost;
+            }
+            set
+            {
+                _cost = value;
+                OnPropertyChanged("Cost");
+            }
         }
         #endregion
 
@@ -44,6 +54,7 @@ namespace CostCounter.Model
             {
                 Elaps += dateTime - _lastNotifiedTime;
                 _lastNotifiedTime = dateTime;
+                CalcCost();
             }
             else
             {
@@ -58,7 +69,13 @@ namespace CostCounter.Model
                 Elaps += dateTime - _lastNotifiedTime;
                 _lastNotifiedTime = dateTime;
                 _isRunning = false;
+                CalcCost();
             }
+        }
+
+        private void CalcCost()
+        {
+            Cost = (int)(CostPerHour * Elaps.TotalHours);
         }
     }
 }
