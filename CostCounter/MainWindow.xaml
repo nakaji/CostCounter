@@ -8,41 +8,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="27" />
             <RowDefinition Height="50" />
             <RowDefinition Height="86*" />
             <RowDefinition Height="48" />
             <RowDefinition Height="45" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="4" Name="grid1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Button Content="開始" Name="startButton" Margin="5" Command="{Binding Path=StartCommand}" />
-            <Button Content="停止" Grid.Column="1" Name="stopButton" Margin="5" Command="{Binding Path=StopCommand}" />
-        </Grid>
-        <Menu Name="menu1" >
-            <MenuItem DataContext="{Binding}" />
-        </Menu>
-        <Label Content="{Binding Path=TotalCost}" Grid.Row="1" Name="totalCost" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" DataContext="{Binding}" Target="{Binding}" />
-        <Grid Grid.Row="3" Name="grid2" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="24" />
-                <RowDefinition Height="24" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200*" />
-                <ColumnDefinition Width="100*" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <Button Content="追加" Name="addButton" Command="{Binding Path=AddParticipantCommand}" Grid.Column="2" Margin="5" Grid.RowSpan="2" />
-            <TextBox Name="name" Text="{Binding Path=Name}" Margin="5,0,5,0" Grid.Row="1" />
-            <TextBox Name="costPerHour" Text="{Binding Path=CostPerHour}" Margin="5,0,5,0" Grid.Column="1" Grid.Row="1" />
-            <Label Content="名前" Name="label1" />
-            <Label Content="単金" Name="label2" Grid.Column="1" />
-        </Grid>
-        <ListBox Grid.Row="2" Name="participantList" ItemsSource="{Binding Path=Participants}" >
+        <Label Grid.Row="0" Content="{Binding Path=TotalCost}" Name="totalCost" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="28" />
+        <ListBox Grid.Row="1" Name="participantList" ItemsSource="{Binding Path=Participants}" >
             <ListBox.Template>
                 <ControlTemplate TargetType="{x:Type ListBox}">
                     <StackPanel>
@@ -60,10 +32,34 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Width="200" Content="{Binding Path=Name}"/>
                         <Label Width="100" Content="{Binding Path=CostPerHour}"/>
-                        <Label Width="100" Content="{Binding Path=Cost}"/>
+                        <Label Width="100" Content="{Binding Path=Cost}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Grid Grid.Row="2" Name="grid2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="24" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*" />
+                <ColumnDefinition Width="100*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Button Content="追加" Name="addButton" Command="{Binding Path=AddParticipantCommand}" Grid.Column="2" Margin="5" Grid.RowSpan="2" />
+            <TextBox Name="name" Text="{Binding Path=Name}" Margin="5,0,5,0" Grid.Row="1" />
+            <TextBox Name="costPerHour" Text="{Binding Path=CostPerHour}" Margin="5,0,5,0" Grid.Column="1" Grid.Row="1" />
+            <Label Content="名前" Name="label1" />
+            <Label Content="単金" Name="label2" Grid.Column="1" />
+        </Grid>
+        <Grid Grid.Row="3" Name="grid1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="開始" Name="startButton" Margin="5" Command="{Binding Path=StartCommand}" />
+            <Button Content="停止" Grid.Column="1" Name="stopButton" Margin="5" Command="{Binding Path=StopCommand}" />
+        </Grid>
     </Grid>
 </Window>
