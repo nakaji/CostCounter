@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Input;
@@ -67,7 +68,7 @@ namespace CostCounter.ViewModel
             }
         }
 
-        public List<Participant> Participants
+        public ObservableCollection<Participant> Participants
         {
             get { return _keeper.Participants; }
         }
