@@ -20,11 +20,22 @@ namespace CostCounter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel model;
+
         public MainWindow()
         {
             InitializeComponent();
-            var model = new MainWindowViewModel();
+            model = new MainWindowViewModel();
             DataContext = model;
+
+            model.Interval = 1;
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            model.Name = "AAA";
+            model.CostPerHour = 10000;
+            model.AddParticipantCommand.Execute(null);
         }
     }
 }
