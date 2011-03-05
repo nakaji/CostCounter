@@ -16,7 +16,7 @@ namespace CostCounter.ViewModel
             _timer = new Timer(x =>
                                    {
                                        _keeper.Notify();
-                                       OnPropertyChanged("TotalCost");
+                                       TotalCost = _keeper.TotalCost;
                                    }, null, -1, _interval * 1000);
         }
 
@@ -59,9 +59,15 @@ namespace CostCounter.ViewModel
             get { return _keeper.Participants; }
         }
 
-        public string TotalCost
+        private long _totalCost = 0;
+        public long TotalCost
         {
-            get { return string.Format("{0}", _keeper.TotalCost); }
+            get { return _totalCost; }
+            set
+            {
+                _totalCost = value;
+                OnPropertyChanged("TotalCost");
+            }
         }
         #endregion
 
@@ -86,6 +92,7 @@ namespace CostCounter.ViewModel
                 return _stopCommand ?? (_stopCommand = new Command(() =>
                                                                        {
                                                                            _keeper.Stop();
+                                                                           TotalCost = _keeper.TotalCost;
                                                                            _timer.Change(-1, _interval * 1000);
                                                                        }, () => _keeper.IsRunning));
             }
