@@ -59,7 +59,7 @@
     <Compile Include="Model\TimeKeeper.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\ModelBase.cs" />
+    <Compile Include="Common\ModelBase.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
